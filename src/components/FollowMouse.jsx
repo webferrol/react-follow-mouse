@@ -7,6 +7,10 @@ export const FollowMouse = () => {
   useEffect(() => {
     console.log('useEffect')
 
+    /**
+     * Función que estudia el movimiento de puntero
+     * @param {EventListener} event
+     */
     const handlePointerMove = event => {
       const { clientX: x, clientY: y } = event
       setPosition({ x, y })
@@ -24,9 +28,15 @@ export const FollowMouse = () => {
       window.removeEventListener('pointermove', handlePointerMove)
     }
   }, [enabled])
+
   return (
     <>
-      <div className='ball' style={{ transform: `translate(${position.x}px,${position.y}px)` }}> </div>
+      <div
+        className='ball'
+        style={{
+          transform: `translate(${position.x}px,${position.y}px)`
+        }}
+      />
       <button onClick={() => setEnabled(!enabled)}>{enabled ? 'Desactivar' : 'Activar'} seguir puntero</button>
     </>
   )
