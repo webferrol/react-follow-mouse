@@ -1,4 +1,4 @@
-import { FollowMouse } from './assets/components/FollowMouse'
+import { FollowMouse } from './components/FollowMouse'
 import './App.css'
 
 function App () {

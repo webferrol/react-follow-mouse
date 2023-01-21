@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react'
-import '../../ball.css'
+import '../ball.css'
 export const FollowMouse = () => {
   const [enabled, setEnabled] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
+
   useEffect(() => {
     console.log('useEffect')
-    const handleMove = event => {
+
+    const handlePointerMove = event => {
       const { clientX: x, clientY: y } = event
-      setPosition({ ...position, x, y })
+      setPosition({ x, y })
     }
 
     if (enabled) {
-      window.addEventListener('pointermove', handleMove)
+      window.addEventListener('pointermove', handlePointerMove)
     }
 
     // Cleanup
@@ -19,7 +21,7 @@ export const FollowMouse = () => {
     // Cuando cambian las dependencias antes de ejecutar el efecto de nuevo
     return () => {
       console.log('cleanup')
-      window.removeEventListener('pointermove', handleMove)
+      window.removeEventListener('pointermove', handlePointerMove)
     }
   }, [enabled])
   return (
